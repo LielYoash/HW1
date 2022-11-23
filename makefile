@@ -40,4 +40,4 @@ main.o: main.c NumClass.h
 	gcc -Wall -g -c main.c
 
 clean:
-	rm -f *.o maindrec
+	rm -f *.o maindrec maindloop
