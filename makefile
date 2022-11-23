@@ -2,24 +2,17 @@
 
 all: libclassloop.a libclassloop.so libclassrec.a libclassrec.so maindloop maindrec
 
+libclassloop.a: basicClassification.c advancedClassificationLoop.c NumClass.h
+	ar -rcs libclassloop.a basicClassification.c advancedClassificationLoop.c NumClass.h
 
-libclassloop.o: basicClassification.c advancedClassificationLoop.c NumClass.h
-	gcc -Wall -g -c basicClassification.c advancedClassificationLoop.c -lm
+libclassloop.so: basicClassification.c advancedClassificationLoop.c NumClass.h
+	gcc -shared -o libclassloop.so basicClassification.c advancedClassificationLoop.c NumClass.h -lm
 
-libclassrec.o: basicClassification.c advancedClassificationRecursion.c NumClass.h
-	gcc -Wall -g -c basicClassification.c advancedClassificationRecursion.c -lm
+libclassrec.a: basicClassification.c advancedClassificationRecursion.c NumClass.h
+	ar -rcs libclassrec.a basicClassification.c advancedClassificationRecursion.c NumClass.h
 
-libclassloop.a: libclassloop.o
-	ar -rcs libclassloop.a libclassloop.o
-
-libclassloop.so: libclassloop.o
-	ar -shared -o libclassloop.so libclassloop.o
-
-libclassrec.a: libclassrec.o
-	ar -rcs libclassrec.a libclassrec.o
-
-libclassrec.so: libclassrec.o
-	ar -shared -o libclassrec.so libclassrec.o
+libclassrec.so: basicClassification.c advancedClassificationRecursion.c NumClass.h
+	gcc -shared -o libclassrec.so basicClassification.c advancedClassificationRecursion.c NumClass.h
 
 maindloop: basicClassification.o advancedClassificationLoop.o main.o
 	gcc -Wall -g -o maindloop basicClassification.o advancedClassificationLoop.o main.o -lm
@@ -40,4 +33,4 @@ main.o: main.c NumClass.h
 	gcc -Wall -g -c main.c
 
 clean:
-	rm -f *.o maindrec maindloop
+	rm -f *.o maindrec maindloop *.a *.so
