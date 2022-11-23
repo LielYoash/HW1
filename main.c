@@ -2,7 +2,7 @@
 #include "NumClass.h"
 
 int main() {
-    int start, end;  //test for commit
+    int start, end;
     printf("Enter your wanted range: \n");
     scanf("%d %d", &start, &end);
 
