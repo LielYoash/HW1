@@ -1,4 +1,5 @@
-.PHONY:all clean
+
+all: libclassloop.a libclassloop.so libclassrec.a libclassrec.so maindloop maindrec
 
 loops: libclassloop.a
 
@@ -8,24 +9,23 @@ loopd: libclassloop.so
 
 recursived: libclassrec.so
 
-all: libclassloop.a libclassloop.so libclassrec.a libclassrec.so maindloop maindrec
 
-libclassloop.a: basicClassification.o advancedClassificationLoop.o NumClass.h
-	ar -rcs libclassloop.a basicClassification.o advancedClassificationLoop.o NumClass.h
+libclassloop.a: basicClassification.o advancedClassificationLoop.o
+	ar -rcs libclassloop.a basicClassification.o advancedClassificationLoop.o
 
-libclassloop.so: basicClassification.o advancedClassificationLoop.o NumClass.h
-	gcc -shared -o libclassloop.so basicClassification.o advancedClassificationLoop.o NumClass.h -lm
+libclassloop.so: basicClassification.o advancedClassificationLoop.o
+	gcc -shared -o libclassloop.so basicClassification.o advancedClassificationLoop.o
 
-libclassrec.a: basicClassification.o advancedClassificationRecursion.o NumClass.h
-	ar -rcs libclassrec.a basicClassification.o advancedClassificationRecursion.o NumClass.h
+libclassrec.a: basicClassification.o advancedClassificationRecursion.o
+	ar -rcs libclassrec.a basicClassification.o advancedClassificationRecursion.o
 
-libclassrec.so: basicClassification.o advancedClassificationRecursion.o NumClass.h
-	gcc -shared -o libclassrec.so basicClassification.o advancedClassificationRecursion.o NumClass.h
+libclassrec.so: basicClassification.o advancedClassificationRecursion.o
+	gcc -shared -o libclassrec.so basicClassification.o advancedClassificationRecursion.o
 
-mains: libclassrec.a main.o NumClass.h
+mains: libclassrec.a main.o
 	gcc -Wall -g -o mains main.o libclassrec.a -lm
 
-maindloop: libclassloop.so main.o NumClass.h
+maindloop: libclassloop.so main.o
 	gcc -Wall -g -o maindloop main.o libclassloop.so -lm
 
 maindrec: libclassrec.so main.o
@@ -42,6 +42,8 @@ advancedClassificationRecursion.o: advancedClassificationRecursion.c NumClass.h
 
 main.o: main.c NumClass.h
 	gcc -Wall -g -c main.c
+
+.PHONY:all clean
 
 clean:
 	rm -f *.o maindrec maindloop mains *.a *.so
