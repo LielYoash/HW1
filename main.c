@@ -21,7 +21,7 @@ int main() {
     printf("\n");
 
     printf("palimdromes: ");
-    for (int i = 0; i < end - start; i++) {
+    for (int i = 0; i <= end - start; i++) {
         if(isPalindrome(i) == 1 && i>= start && i<=end)
             printf("%d " , i);
     }
