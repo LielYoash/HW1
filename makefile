@@ -1,5 +1,5 @@
 
-all: libclassloop.a libclassloop.so libclassrec.a libclassrec.so maindloop maindrec
+all: loops recursives recursived loopd maindloop maindrec
 
 loops: libclassloop.a
 
