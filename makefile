@@ -1,5 +1,13 @@
 .PHONY:all clean
 
+loops: libclassloop.a
+
+recursives: libclassrec.a
+
+loopd: libclassloop.so
+
+recursived: libclassrec.so
+
 all: libclassloop.a libclassloop.so libclassrec.a libclassrec.so maindloop maindrec
 
 libclassloop.a: basicClassification.o advancedClassificationLoop.o NumClass.h
