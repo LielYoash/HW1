@@ -3,7 +3,7 @@
 
 int main() {
     int start, end;
-    printf("Enter your wanted range: \n");
+    printf("Enter your wanted range: ");
     scanf("%d %d", &start, &end);
 
     printf("The Armstrong numbers are:");
@@ -36,7 +36,5 @@ int main() {
             printf(" %d", i);
         }
     }
-    printf("\n");
-
     return 0;
 }
