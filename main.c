@@ -3,7 +3,6 @@
 
 int main() {
     int start, end;
-    printf("Enter your wanted range: ");
     scanf("%d %d", &start, &end);
 
     printf("The Armstrong numbers are:");
@@ -15,7 +14,7 @@ int main() {
     printf("\n");
 
     printf("The Palindromes are:");
-    for (int i = 0; i <= end - start; i++) {
+    for (int i = start; i <= end; i++) {
         if (isPalindrome(i) == 1) {
             printf(" %d", i);
         }
